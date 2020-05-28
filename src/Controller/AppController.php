@@ -17,8 +17,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\View\Helper;
+use Cake\View\View;/**
 
-/**
  * Application Controller
  *
  * Add your application-wide methods in the class below, your controllers
@@ -43,11 +44,12 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
     }
+
+   
 }

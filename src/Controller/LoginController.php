@@ -39,11 +39,20 @@ class LoginController extends AppController
     {
         $this->set('Title', 'Multigraph');
         $this->viewBuilder()->setLayout('login');
+        $this->loadModel('Usuarios');
     }
 
     public function index()
     {
+        if ($this->request->is(['post'])) {
+            $dados = $this->request->getData();
+            $this->Login($dados);
+        }
+    }
+
+    public function Login($user)
+    {
+        $this->Usuarios->validaLogin($user);
 
     }
-    
 }

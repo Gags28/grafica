@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration.
  *
@@ -24,6 +25,7 @@
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 
 /*
  * The default class to use for all routes
@@ -42,6 +44,7 @@ use Cake\Routing\RouteBuilder;
  * inconsistently cased URLs when used with `:plugin`, `:controller` and
  * `:action` markers.
  */
+
 /** @var \Cake\Routing\RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
@@ -62,8 +65,18 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, templates/Pages/home.php)...
      */
-    $builder->connect('/', ['controller' => 'Login', 'action' => 'index', 'login']);
 
+
+    $builder->connect('/', ['controller' => 'Clientes', 'action' => 'index', 'prefix' => null]);
+
+
+    Router::prefix('admin', function (RouteBuilder $routes) {
+        $routes->connect('/', ['controller' => 'Usuarios', 'action' => 'dashboard']);
+        $routes->fallbacks('DashedRoute');
+    });
+
+
+    
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */

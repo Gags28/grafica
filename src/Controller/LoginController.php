@@ -37,6 +37,8 @@ class LoginController extends AppController
 
     public function initialize(): void
     {
+        parent::initialize();
+
         $this->set('Title', 'Multigraph');
         $this->viewBuilder()->setLayout('login');
         $this->loadModel('Usuarios');
@@ -44,15 +46,24 @@ class LoginController extends AppController
 
     public function index()
     {
+
         if ($this->request->is(['post'])) {
             $dados = $this->request->getData();
-            $this->Login($dados);
+            $this->login($dados);
         }
+
     }
 
-    public function Login($user)
+    public function login($user)
     {
-        $this->Usuarios->validaLogin($user);
+        $login = $this->Usuarios->validaLogin($user);
+
+        if(!$login['ok']){
+
+        }else{
+            $this->Auth->setUser($login['user']);
+            $this->redirect(['controller' => 'clientes', 'action' => 'index', 'prefix' => 'admin']);
+        }
 
     }
 }

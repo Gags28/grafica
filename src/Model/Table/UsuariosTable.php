@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -110,7 +111,52 @@ class UsuariosTable extends Table
         return $rules;
     }
 
-    public function validaLogin($user){
-        debug($user);
+    public function beforeSave(\Cake\Event\Event $event, \Cake\Datasource\EntityInterface $entity, \ArrayObject $options)
+    {
+        if (!empty($entity->senha)) {
+            $senha = (new \Cake\Auth\DefaultPasswordHasher())->hash($entity->senha);
+            $entity->senha = $senha;
+        } else {
+            unset($entity->senha);
+        }
+
+        return true;
+    }
+
+
+    public function validaLogin($user)
+    {
+        $result = [];
+        $result['ok'] = false;
+        $result['user'] = null;
+        $result['message'] = 'Usuário não encontrado';
+
+        $query = $this->find()->where(['email' => $user['email']])->first();
+
+        if ((int) $query->status === (int) $this->statusAtivo) {
+
+            $password = new \Cake\Auth\DefaultPasswordHasher();
+            if ($password->check($user['senha'], $query->senha)) {
+                $result['ok'] = true;
+                $result['user'] = [
+                    'id' => $query->id,
+                    'foto' => $query->foto,
+                    'nome' => $query->nome,
+                    'email' => $query->email,
+                    'empresa_id' => $query->empresa_id,
+                    'limete_pedidos' => $query->limete_pedidos,
+                    'tipo' => $query->tipo,
+                    'status' => $query->status,
+                ];
+                $result['message'] = 'Usuário localizado';
+            }
+
+        }else{
+            $result['ok'] = false;
+            $result['user'] = null;
+            $result['message'] = 'Usuário não autorizado';
+        }
+
+        return $result;
     }
 }

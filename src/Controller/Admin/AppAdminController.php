@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+
 class AppAdminController extends AppController
 {
 
@@ -11,15 +13,17 @@ class AppAdminController extends AppController
     {
         parent::initialize();
         $this->loadModel('Usuarios');
+        $this->viewBuilder()->setLayout('admin');
     }
 
-    public function beforeFilter(\Cake\Event\EventInterface $event) {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
         parent::beforeFilter($event);
         $user = $this->Auth->user();
 
-        if(!empty($user) && $user['tipo'] === $this->Usuarios->tipoAdmin && $user['status'] === $this->Usuarios->statusAtivo){
+        if (!empty($user) && $user['status'] === $this->Usuarios->statusAtivo) {
             $this->Auth->allow();
-        }else{
+        } else {
             $this->Auth->deny();
             return $this->redirect(['controller' => 'login', 'action' => 'index', 'prefix' => false]);
         }

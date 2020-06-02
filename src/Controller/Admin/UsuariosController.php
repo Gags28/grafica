@@ -5,17 +5,19 @@ namespace App\Controller\Admin;
 
 use App\Controller\Admin\AppAdminController;
 
-class ClientesController extends AppAdminController
+class UsuariosController extends AppAdminController
 {
 
     public function initialize(): void
     {
         parent::initialize();
+        $this->loadModel('Usuarios');
 
     }
 
     public function index(){
-        
+        $usuarios = $this->Usuarios->find()->contain(['Empresa'])->all();
+        $this->set(compact('usuarios'));
     }
 
    

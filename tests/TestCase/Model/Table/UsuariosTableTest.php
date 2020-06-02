@@ -72,4 +72,34 @@ class UsuariosTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test beforeSave method
+     *
+     * @return void
+     */
+    public function testBeforeSave(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test validaLogin method
+     *
+     * @return void
+     */
+    public function testValidaLogin(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test setMenu method
+     *
+     * @return void
+     */
+    public function testSetMenu(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

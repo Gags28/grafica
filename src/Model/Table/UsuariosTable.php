@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -30,6 +29,7 @@ use Cake\Validation\Validator;
  */
 class UsuariosTable extends Table
 {
+
     public $statusAtivo = 1;
     public $statusInativo = 2;
 
@@ -69,6 +69,12 @@ class UsuariosTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->scalar('foto')
+            ->maxLength('foto', 255)
+            ->requirePresence('foto', 'create')
+            ->notEmptyString('foto');
+
+        $validator
             ->scalar('nome')
             ->maxLength('nome', 255)
             ->allowEmptyString('nome');
@@ -81,6 +87,11 @@ class UsuariosTable extends Table
             ->scalar('senha')
             ->maxLength('senha', 255)
             ->allowEmptyString('senha');
+
+        $validator
+            ->scalar('telefone')
+            ->maxLength('telefone', 45)
+            ->allowEmptyString('telefone');
 
         $validator
             ->integer('limite_pedidos')
@@ -109,8 +120,11 @@ class UsuariosTable extends Table
         $rules->add($rules->existsIn(['empresa_id'], 'Empresa'));
 
         return $rules;
+
+
     }
 
+    
     public function beforeSave(\Cake\Event\Event $event, \Cake\Datasource\EntityInterface $entity, \ArrayObject $options)
     {
         if (!empty($entity->senha)) {
@@ -146,6 +160,8 @@ class UsuariosTable extends Table
                         'limete_pedidos' => $query->limete_pedidos,
                         'tipo' => $query->tipo,
                         'status' => $query->status,
+                        'menu' => $this->setMenu($query->tipo),
+                        'carrinho' => []
                     ];
                     $result['message'] = 'Usuário localizado';
                 }
@@ -158,5 +174,48 @@ class UsuariosTable extends Table
         }
     
         return $result;
+    }
+
+    public function setMenu($tipo)
+    {
+        $menu = [
+            'pedidos' => false,
+            'usuarios' => false,
+            'produtos' => false,
+            'empresas' => false,
+            'solicitar' => false,
+        ];
+
+        switch ($tipo) {
+            case $this->tipoAdmin:
+                $menu = [
+                    'pedidos' => true,
+                    'usuarios' => true,
+                    'produtos' => true,
+                    'empresas' => true,
+                    'solicitar' => false,
+                ];
+                break;
+            case $this->tipoComprador:
+                $menu = [
+                    'pedidos' => true,
+                    'usuarios' => true,
+                    'produtos' => false,
+                    'empresas' => false,
+                    'solicitar' => false,
+                ];
+                break;
+            case $this->tipoSolicitante:
+                $menu = [
+                    'pedidos' => false,
+                    'usuarios' => false,
+                    'produtos' => false,
+                    'empresas' => false,
+                    'solicitar' => true,
+                ];
+                break;
+        }
+
+        return $menu;
     }
 }

@@ -64,7 +64,7 @@ class LoginController extends AppController
             $this->Flash->error($login['message']);
         }else{
             $this->Auth->setUser($login['user']);
-            return $this->redirect(['controller' => 'Clientes', 'action' => 'index', 'prefix' => 'Admin']);
+            return $this->redirect(['controller' => 'Usuarios', 'action' => 'index', 'prefix' => 'Admin']);
         }
 
     }

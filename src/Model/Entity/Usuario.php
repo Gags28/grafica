@@ -9,9 +9,11 @@ use Cake\ORM\Entity;
  * Usuario Entity
  *
  * @property int $id
+ * @property string $foto
  * @property string|null $nome
  * @property string|null $email
  * @property string|null $senha
+ * @property string|null $telefone
  * @property int|null $limite_pedidos
  * @property int|null $empresa_id
  * @property int|null $tipo
@@ -31,9 +33,11 @@ class Usuario extends Entity
      * @var array
      */
     protected $_accessible = [
+        'foto' => true,
         'nome' => true,
         'email' => true,
         'senha' => true,
+        'telefone' => true,
         'limite_pedidos' => true,
         'empresa_id' => true,
         'tipo' => true,

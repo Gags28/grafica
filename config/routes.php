@@ -74,6 +74,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
 });
 
 Router::prefix('admin', function (RouteBuilder $routes) {
-    $routes->connect('/', ['controller' => 'Clientes', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Usuarios', 'action' => 'index']);
     $routes->fallbacks('DashedRoute');
 });

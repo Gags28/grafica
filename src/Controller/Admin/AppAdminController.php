@@ -12,10 +12,16 @@ class AppAdminController extends AppController
         parent::initialize();
         $this->loadModel('Usuarios');
     }
-    public function isAuthorized($user) {
-        
+
+    public function beforeFilter(\Cake\Event\EventInterface $event) {
+        parent::beforeFilter($event);
+        $user = $this->Auth->user();
+
         if(!empty($user) && $user['tipo'] === $this->Usuarios->tipoAdmin && $user['status'] === $this->Usuarios->statusAtivo){
-            return true;
+            $this->Auth->allow();
+        }else{
+            $this->Auth->deny();
+            return $this->redirect(['controller' => 'login', 'action' => 'index', 'prefix' => false]);
         }
     }
 }

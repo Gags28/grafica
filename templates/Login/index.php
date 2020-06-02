@@ -32,8 +32,7 @@ use Cake\Routing\Router; ?>
                         <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-xs-100">
 
                             <h1 class="display-4 mb-10">Login</h1>
-                            <p class="mb-30">Obtenha acesso a sua conta coorporativa.</p>
-
+                            <?= $this->Flash->render() ?>
                             <?= $this->Form->create() ?>
 
                             <?php echo $this->Form->control('email', ['label' => false, 'type' => 'mail', ' placeholder' => 'E-mail']); ?>

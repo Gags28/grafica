@@ -44,6 +44,8 @@ class LoginController extends AppController
         $this->loadModel('Usuarios');
     }
 
+ 
+
     public function index()
     {
 
@@ -59,11 +61,16 @@ class LoginController extends AppController
         $login = $this->Usuarios->validaLogin($user);
 
         if(!$login['ok']){
-
+            $this->Flash->error($login['message']);
         }else{
             $this->Auth->setUser($login['user']);
-            $this->redirect(['controller' => 'clientes', 'action' => 'index', 'prefix' => 'admin']);
+            return $this->redirect(['controller' => 'Clientes', 'action' => 'index', 'prefix' => 'Admin']);
         }
 
+    }
+
+    public function logout(){
+        $this->request->getSession()->destroy();
+        return $this->redirect($this->Auth->logout());
     }
 }

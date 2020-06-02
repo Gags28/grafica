@@ -51,14 +51,13 @@ $routes->setRouteClass(DashedRoute::class);
 $routes->scope('/', function (RouteBuilder $builder) {
     // Register scoped middleware for in scopes.
     $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-        'httpOnly' => true,
+        "origin" => ["*"],
+        "methods" => ["GET", "POST", "PUT", "PATCH", "DELETE"],
+        "headers.allow" => ['X-ApiToken', 'Engaged-Auth-Token', 'Access-Control-Allow-Headers', 'Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+        "headers.expose" => [],
+        "credentials" => false,
+        "cache" => 0,
     ]));
-
-    /*
-     * Apply a middleware to the current route scope.
-     * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
-     */
-    $builder->applyMiddleware('csrf');
 
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -67,45 +66,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
 
 
-    $builder->connect('/', ['controller' => 'Clientes', 'action' => 'index', 'prefix' => null]);
+    $builder->connect('/', ['controller' => 'Login', 'action' => 'index', 'prefix' => null]);
+    $builder->connect('/login', ['controller' => 'VwLogin', 'action' => 'login', 'prefix' => null]);
+    $builder->connect('/logout', ['controller' => 'Login', 'action' => 'logout', 'prefix' => null]);
 
-
-    Router::prefix('admin', function (RouteBuilder $routes) {
-        $routes->connect('/', ['controller' => 'Usuarios', 'action' => 'dashboard']);
-        $routes->fallbacks('DashedRoute');
-    });
-
-
-    
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
-    /*
-     * Connect catchall routes for all controllers.
-     *
-     * The `fallbacks` method is a shortcut for
-     *
-     * ```
-     * $builder->connect('/:controller', ['action' => 'index']);
-     * $builder->connect('/:controller/:action/*', []);
-     * ```
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
-    $builder->fallbacks();
+    $builder->fallbacks('InflectedRoute');
 });
 
-/*
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * $routes->scope('/api', function (RouteBuilder $builder) {
- *     // No $builder->applyMiddleware() here.
- *     // Connect API actions here.
- * });
- * ```
- */
+Router::prefix('admin', function (RouteBuilder $routes) {
+    $routes->connect('/', ['controller' => 'Clientes', 'action' => 'index']);
+    $routes->fallbacks('DashedRoute');
+});

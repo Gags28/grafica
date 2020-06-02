@@ -63,7 +63,12 @@ class AppController extends Controller
                 'prefix' => false,
                 'plugin' => null
             ],
-            'logoutRedirect' => '/',
+            'logoutRedirect' =>[
+                'controller' => 'Login',
+                'action' => 'index',
+                'prefix' => false,
+                'plugin' => null
+            ],
             'authError' => 'Você não possui autorização para acessar essa área',
             'authorize' => ['Controller'], 
             'authenticate' => [
@@ -83,5 +88,7 @@ class AppController extends Controller
     
     }
 
-   
+    public function isAuthorized($user) {
+        return true;
+    }
 }

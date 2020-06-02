@@ -21,17 +21,18 @@
 
     <?= $this->fetch('content') ?>
 
-    <?= $this->Html->script('/plugins/jquery/dist/jquery.min.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/plugins/popper.js/dist/umd/popper.min.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/plugins/bootstrap/dist/js/bootstrap.min.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/plugins/jowl.carousel/dist/owl.carousel.min.js', ['block' => 'script']);?>
+    <?= $this->Html->script('/plugins/jquery/dist/jquery.min.js');?>
+    <?= $this->Html->script('/plugins/popper.js/dist/umd/popper.min.js');?>
+    <?= $this->Html->script('/plugins/bootstrap/dist/js/bootstrap.min.js');?>
+    <?= $this->Html->script('/plugins/owl.carousel/dist/owl.carousel.min.js');?>
 
-    <?= $this->Html->script('/js/jquery.slimscroll.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/js/jquery.slimscroll.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/js/dropdown-bootstrap-extended.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/js/feather.min.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/js/init.js', ['block' => 'script']);?>
-    <?= $this->Html->script('/js/login-data.js', ['block' => 'script']);?>
+    <?= $this->Html->script('/js/jquery.slimscroll.js');?>
+    <?= $this->Html->script('/js/jquery.slimscroll.js');?>
+    <?= $this->Html->script('/js/dropdown-bootstrap-extended.js');?>
+    <?= $this->Html->script('/js/feather.min.js');?>
+    <?= $this->Html->script('/js/init.js');?>
+    <?= $this->Html->script('/js/login-data.js');?>
+    <?= $this->Html->script('/js/panel/utills.js');?>
 
 </body>
 

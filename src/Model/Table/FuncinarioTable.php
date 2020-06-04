@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Funcinario Model
  *
- * @property \App\Model\Table\EmpresaTable&\Cake\ORM\Association\BelongsTo $Empresa
- *
  * @method \App\Model\Entity\Funcinario newEmptyEntity()
  * @method \App\Model\Entity\Funcinario newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Funcinario[] newEntities(array $data, array $options = [])
@@ -43,7 +41,7 @@ class FuncinarioTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Empresa', [
+        $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id',
         ]);
     }
@@ -86,7 +84,7 @@ class FuncinarioTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['empresa_id'], 'Empresa'));
+        $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
 
         return $rules;
     }

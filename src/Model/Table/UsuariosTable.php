@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Usuarios Model
  *
- * @property \App\Model\Table\EmpresaTable&\Cake\ORM\Association\BelongsTo $Empresa
- *
  * @method \App\Model\Entity\Usuario newEmptyEntity()
  * @method \App\Model\Entity\Usuario newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Usuario[] newEntities(array $data, array $options = [])
@@ -29,9 +27,8 @@ use Cake\Validation\Validator;
  */
 class UsuariosTable extends Table
 {
-
     public $statusAtivo = 1;
-    public $statusInativo = 2;
+    public $statusInativo = 9;
 
     public $tipoAdmin = 1;
     public $tipoComprador = 2;
@@ -51,8 +48,9 @@ class UsuariosTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Empresa', [
-            'foreignKey' => 'empresa_id',
+        $this->belongsTo('EmpresaCnpj', [
+            'foreignKey' => 'empresa_cnpj_id',
+            'joinType' => 'INNER',
         ]);
     }
 
@@ -71,39 +69,44 @@ class UsuariosTable extends Table
         $validator
             ->scalar('foto')
             ->maxLength('foto', 255)
-            ->requirePresence('foto', 'create')
-            ->notEmptyString('foto');
+            ->allowEmptyString('foto');
 
         $validator
             ->scalar('nome')
             ->maxLength('nome', 255)
-            ->allowEmptyString('nome');
+            ->requirePresence('nome', 'create')
+            ->notEmptyString('nome');
 
         $validator
             ->email('email')
-            ->allowEmptyString('email');
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email')
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('senha')
             ->maxLength('senha', 255)
-            ->allowEmptyString('senha');
-
+            ->requirePresence('senha', 'create');
         $validator
             ->scalar('telefone')
             ->maxLength('telefone', 45)
-            ->allowEmptyString('telefone');
+            ->requirePresence('telefone', 'create')
+            ->notEmptyString('telefone');
 
         $validator
             ->integer('limite_pedidos')
-            ->allowEmptyString('limite_pedidos');
+            ->requirePresence('limite_pedidos', 'create')
+            ->notEmptyString('limite_pedidos');
 
         $validator
             ->integer('tipo')
-            ->allowEmptyString('tipo');
+            ->requirePresence('tipo', 'create')
+            ->notEmptyString('tipo');
 
         $validator
             ->integer('status')
-            ->allowEmptyString('status');
+            ->requirePresence('status', 'create')
+            ->notEmptyString('status');
 
         return $validator;
     }
@@ -117,11 +120,10 @@ class UsuariosTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['empresa_id'], 'Empresa'));
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['empresa_cnpj_id'], 'EmpresaCnpj'));
 
         return $rules;
-
-
     }
 
     
@@ -146,8 +148,12 @@ class UsuariosTable extends Table
         $result['message'] = 'Usuário não encontrado';
 
         $query = $this->find()->where(['email' => $user['email']])->first();
+
+
         if(!empty($query)){
+
             if ((int) $query->status === (int) $this->statusAtivo) {
+
                 $password = new \Cake\Auth\DefaultPasswordHasher();
                 if ($password->check($user['senha'], $query->senha)) {
                     $result['ok'] = true;
@@ -164,6 +170,10 @@ class UsuariosTable extends Table
                         'carrinho' => []
                     ];
                     $result['message'] = 'Usuário localizado';
+                }else{
+                    $result['ok'] = false;
+                    $result['user'] = null;
+                    $result['message'] = 'Senha incorreta';
                 }
     
             }else{

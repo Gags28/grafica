@@ -17,7 +17,14 @@
     <?= $this->Html->css('/plugins/jquery-toggles/css/themes/toggles-light.css') ?>
     <?= $this->Html->css('/plugins/jquery-toast-plugin/dist/jquery.toast.min.css') ?>
     <?= $this->Html->css('/css/style.css') ?>
-
+    <?= $this->Html->css('/css/custom.css') ?>
+    <?= $this->fetch('css'); ?>
+    <script type="text/javascript">
+        var router = __Parametros = {};
+        router.request = <?php echo json_encode($this->request); ?>;
+        router.url = "<?php echo \Cake\Routing\Router::url('/', true); ?>";
+        router.prefix = "<?php echo (!empty($this->request->getParam('prefix'))) ? $this->request->getParam('prefix') : '' ?>";
+    </script>
 
 </head>
 
@@ -156,6 +163,7 @@
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
 
         <div class="hk-pg-wrapper">
+            <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>
     </div>
@@ -182,6 +190,7 @@
     <?= $this->Html->script('/js/init.js'); ?>
     <?= $this->Html->script('/js/dashboard-data.js'); ?>
     <?= $this->Html->script('/js/panel/utills.js'); ?>
+    <?= $this->fetch('script'); ?>
 
 </body>
 

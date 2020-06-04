@@ -41,5 +41,11 @@ class AppView extends View
         $this->loadHelper('Form',[
             'className' => 'MyForm'
         ]);
+        $this->loadHelper('Number',[
+            'className' => 'MyNumber'
+        ]);
+
+        $this->loadHelper('Paginator');
+
     }
 }

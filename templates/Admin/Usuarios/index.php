@@ -9,7 +9,7 @@
     <!-- /Title -->
 
     <div class="pa-0 justify-content-end pb-15 pt-10 text-right">
-        <a href="01-a.html"><button class="btn btn-primary btn-wth-icon btn justify-content-end">Novo Usuario</button></a>
+        <button class="btn btn-primary btn-wth-icon btn justify-content-end add-user">Novo Usuario</button>
     </div>
 
     <section class="hk-sec-wrapper pa-0 pa-md-20">
@@ -22,32 +22,41 @@
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Empresa</th>
-                            <th>Status</th>
+                            <th>Usuário</th>
                             <th>Editar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($usuarios as $user){ ?>
-                        <tr>
-                            <td> <?= $user->nome ?> </td>
-                            <td> <?= $user->email ?> </td>
-                            <td> <?= $user->telefone ?> </td>
-                            <td> <?= $user->empresa->nome ?> </td>
-                            <td>
-                                <div class="badge badge-warning badge-outline">  <?= $user->status ?>  </div>
-                            </td>
-                            <td>
-                                <a href="#" data-toggle="modal" data-target="#exampleModalLarge01">
-                                    <div data-icon="m" class="icon"></div>
-                                </a>
-                            </td>
-                        </tr>
+                        <?php foreach ($usuarios as $user) { ?>
+                            <tr>
+                                <td> <?= $user->nome ?> </td>
+                                <td> <?= $user->email ?> </td>
+                                <td> <?= $this->Number->foneCelular($user->telefone) ?> </td>
+                                <td> <?= $user->empresa_cnpj->empresa->nome ?> </td>
+                                <td>
+                                    <?= $this->Number->active($user->status) ?>
+                                    <?= $this->Number->user($user->tipo) ?>
+                                </td>
+                                <td>
+                                    <a class="edit-user" href="#" user-id="<?= $user->id ?>" data-toggle="modal" data-target="#exampleModalLarge01">
+                                        <div data-icon="m" class="icon"></div>
+                                    </a>
+                                </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
 
             </div>
         </div>
+
+
+        <?= $this->element('helpers/paginator') ?> 
     </section>
 
 </div>
+
+<?= $this->element('pages/usuarios/modal_edit') ?> 
+<?= $this->element('pages/usuarios/modal_add') ?> 
+
+<?php echo $this->Html->script('/js/panel/usuarios/user.js', ['block' => 'script']) ?>

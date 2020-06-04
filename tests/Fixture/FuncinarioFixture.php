@@ -33,7 +33,7 @@ class FuncinarioFixture extends TestFixture
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'empresa_id' => ['type' => 'foreign', 'columns' => ['empresa_id'], 'references' => ['empresa', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'empresa_id' => ['type' => 'foreign', 'columns' => ['empresa_id'], 'references' => ['empresas', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',

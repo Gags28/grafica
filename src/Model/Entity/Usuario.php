@@ -9,15 +9,15 @@ use Cake\ORM\Entity;
  * Usuario Entity
  *
  * @property int $id
- * @property string $foto
- * @property string|null $nome
- * @property string|null $email
- * @property string|null $senha
- * @property string|null $telefone
- * @property int|null $limite_pedidos
- * @property int|null $empresa_id
- * @property int|null $tipo
- * @property int|null $status
+ * @property string|null $foto
+ * @property string $nome
+ * @property string $email
+ * @property string $senha
+ * @property string $telefone
+ * @property int $limite_pedidos
+ * @property int $empresa_cnpj_id
+ * @property int $tipo
+ * @property int $status
  *
  * @property \App\Model\Entity\Empresa $empresa
  */
@@ -39,7 +39,7 @@ class Usuario extends Entity
         'senha' => true,
         'telefone' => true,
         'limite_pedidos' => true,
-        'empresa_id' => true,
+        'empresa_cnpj_id' => true,
         'tipo' => true,
         'status' => true,
         'empresa' => true,

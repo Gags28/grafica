@@ -55,7 +55,7 @@ class PedidosFixture extends TestFixture
                 'id_cartao' => 1,
                 'id_funcionario' => 1,
                 'quantidade' => 1,
-                'data' => '2020-05-29 04:16:16',
+                'data' => '2020-06-04 12:43:33',
                 'status' => 1,
             ],
         ];

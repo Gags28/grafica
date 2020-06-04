@@ -160,4 +160,51 @@ class MyFormHelper extends FormHelper {
         $result = parent::$controlMethod($fieldName, $options);
         return $result;
     }
+
+    public function tipoUsuario($fieldName, array $options = [])
+    {
+        $default = [
+            'empty' => 'Selecione uma opção',
+            'options' => [
+                1 => 'Admin',
+                2 => 'Comprador',
+                3 => 'Solicitante',
+            ]
+        ];
+        $options = \Cake\Utility\Hash::merge($default, $options);
+        return $this->control($fieldName, $options);
+    }
+
+    public function select2($fieldName, array $options = [])
+    {
+        $default = [
+            'class' => 'select2_multiple',
+            'value' => [],
+            'tags' => 'false',
+            'placeholder' => 'Selecione uma opção',
+            'allowClear' => 'false'
+        ];
+        $options = \Cake\Utility\Hash::merge($default, $options);
+        $data = [];
+
+        if ($options['value'] != null) {
+            foreach ($options['value'] as $key => $value) {
+                $data[] = $value;
+            }
+        }
+
+        // debug($data);exit;
+        $options['value'] = $data;
+        $this->Html->css('/plugins/select2/dist/css/select2.min.css', ['block' => 'css']);
+        $this->Html->script('/plugins/select2/dist/js/select2.full.min.js', ['block' => 'script']);
+        $this->Html->script('/plugins/select2/dist/js/i18n/pt-BR.js', ['block' => 'script']);
+        $this->Html->scriptBlock('$(".select2_multiple").select2({
+            language:"pt-BR", 
+            placeholder: "' . $options['placeholder'] . '",
+            tags: ' . $options['tags'] . ',
+            allowClear:  ' . $options['allowClear'] . ',
+            tokenSeparators: [",", "/"] });', ['block' => 'script']);
+
+        return $this->control($fieldName, $options);
+    }
 }

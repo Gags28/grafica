@@ -2,3 +2,57 @@ body,
 html {
     height: 100%;
 }
+
+.pagination li {
+    width: auto;
+    height: 36px;
+}
+
+.pagination li a {
+    display: block;
+    border: 1px solid var(--primary);
+    padding: 5px 10px;
+    color: var(--primary);
+}
+
+.pagination .numbers {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+}
+
+.pagination .numbers li a {
+    border-right: none;
+}
+
+.pagination .numbers li:last-child {
+    border-right: 1px solid var(--primary);
+}
+
+.pagination li.prev {
+    margin-right: 10px;
+}
+
+.pagination li.next {
+    margin-left: 10px;
+}
+
+.pagination li.disabled a {
+    color: #d1d1d1;
+    border-color: #d1d1d1;
+}
+
+.pagination li.active a {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.pagination {
+    padding: 20px;
+}
+
+.left-corner {
+    position: absolute;
+    left: 15px;
+    bottom: 13px;
+}

@@ -142,8 +142,13 @@ class MyFormHelper extends FormHelper {
             'class' => 'form-control'
         ];
 
+        if(isset($options['class'])){
+            $options['class'] .= ' '.$default['class'];
+        }
+
         $controlMethod = $this->_controlMethod;
         $options = \Cake\Utility\Hash::merge($default, $options);
+
         $result = parent::$controlMethod($fieldName, $options);
         return $result;
     }

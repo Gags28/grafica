@@ -27,6 +27,12 @@ class EmpresaCnpjFixture extends TestFixture
         'cnpj' => ['type' => 'string', 'length' => 15, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
         'empresa_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'status' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'rua' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'numero' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'complemento' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'bairro' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'cidade' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
+        'estado' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
         '_indexes' => [
             'empresa_cnpj_ibfk_1' => ['type' => 'index', 'columns' => ['empresa_id'], 'length' => []],
         ],
@@ -54,6 +60,12 @@ class EmpresaCnpjFixture extends TestFixture
                 'cnpj' => 'Lorem ipsum d',
                 'empresa_id' => 1,
                 'status' => 'Lorem ipsum dolor sit amet',
+                'rua' => 'Lorem ipsum dolor sit amet',
+                'numero' => 'Lorem ipsum dolor sit amet',
+                'complemento' => 'Lorem ipsum dolor sit amet',
+                'bairro' => 'Lorem ipsum dolor sit amet',
+                'cidade' => 'Lorem ipsum dolor sit amet',
+                'estado' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

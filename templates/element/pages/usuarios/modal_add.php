@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?= $this->Form->control('nome', ['label' => 'Nome']) ?>
-                            <?= $this->Form->control('email', ['label' => 'E-mail', 'disabled' => 'disabled ']) ?>
+                            <?= $this->Form->control('email', ['label' => 'E-mail', 'disabled' => 'disabled ', 'class' => 'verifica-email']) ?>
                             <?= $this->Form->control('senha', ['type' => 'password', 'label' => 'Senha', 'autocomplete' => 'new-password']) ?>
                             <?= $this->Form->control('telefone', ['label' => 'Telefone']) ?>
                             <?= $this->Form->control('limite_pedidos', ['label' => 'Limite de Pedido']) ?>

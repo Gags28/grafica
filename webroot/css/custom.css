@@ -56,3 +56,13 @@ html {
     left: 15px;
     bottom: 13px;
 }
+
+.message-error {
+    color: var(--danger);
+    margin-top: 5px;
+    display: block;
+}
+
+input.error {
+    border-color: var(--danger);
+}

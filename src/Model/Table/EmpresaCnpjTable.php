@@ -29,6 +29,7 @@ use Cake\Validation\Validator;
  */
 class EmpresaCnpjTable extends Table
 {
+
     public $statusAtivo = 1;
     public $statusInativo = 9;
 
@@ -49,6 +50,9 @@ class EmpresaCnpjTable extends Table
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id',
             'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Usuarios', [
+            'foreignKey' => 'empresa_cnpj_id',
         ]);
     }
 
@@ -76,6 +80,36 @@ class EmpresaCnpjTable extends Table
             ->maxLength('status', 45)
             ->requirePresence('status', 'create')
             ->notEmptyString('status');
+
+        $validator
+            ->scalar('rua')
+            ->maxLength('rua', 255)
+            ->allowEmptyString('rua');
+
+        $validator
+            ->scalar('numero')
+            ->maxLength('numero', 45)
+            ->allowEmptyString('numero');
+
+        $validator
+            ->scalar('complemento')
+            ->maxLength('complemento', 45)
+            ->allowEmptyString('complemento');
+
+        $validator
+            ->scalar('bairro')
+            ->maxLength('bairro', 255)
+            ->allowEmptyString('bairro');
+
+        $validator
+            ->scalar('cidade')
+            ->maxLength('cidade', 255)
+            ->allowEmptyString('cidade');
+
+        $validator
+            ->scalar('estado')
+            ->maxLength('estado', 255)
+            ->allowEmptyString('estado');
 
         return $validator;
     }

@@ -12,6 +12,12 @@ use Cake\ORM\Entity;
  * @property string $cnpj
  * @property int $empresa_id
  * @property string $status
+ * @property string|null $rua
+ * @property string|null $numero
+ * @property string|null $complemento
+ * @property string|null $bairro
+ * @property string|null $cidade
+ * @property string|null $estado
  *
  * @property \App\Model\Entity\Empresa $empresa
  */
@@ -30,6 +36,12 @@ class EmpresaCnpj extends Entity
         'cnpj' => true,
         'empresa_id' => true,
         'status' => true,
+        'rua' => true,
+        'numero' => true,
+        'complemento' => true,
+        'bairro' => true,
+        'cidade' => true,
+        'estado' => true,
         'empresa' => true,
     ];
 }

@@ -13,7 +13,6 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\EmpresaCnpjTable&\Cake\ORM\Association\HasMany $EmpresaCnpj
  * @property \App\Model\Table\FuncinarioTable&\Cake\ORM\Association\HasMany $Funcinario
- * @property \App\Model\Table\UsuariosTable&\Cake\ORM\Association\HasMany $Usuarios
  *
  * @method \App\Model\Entity\Empresa newEmptyEntity()
  * @method \App\Model\Entity\Empresa newEntity(array $data, array $options = [])
@@ -51,9 +50,6 @@ class EmpresasTable extends Table
         $this->hasMany('Funcinario', [
             'foreignKey' => 'empresa_id',
         ]);
-        $this->hasMany('Usuarios', [
-            'foreignKey' => 'empresa_id',
-        ]);
     }
 
     /**
@@ -73,41 +69,6 @@ class EmpresasTable extends Table
             ->maxLength('nome', 255)
             ->requirePresence('nome', 'create')
             ->notEmptyString('nome');
-
-        $validator
-            ->scalar('rua')
-            ->maxLength('rua', 255)
-            ->requirePresence('rua', 'create')
-            ->notEmptyString('rua');
-
-        $validator
-            ->scalar('numero')
-            ->maxLength('numero', 255)
-            ->requirePresence('numero', 'create')
-            ->notEmptyString('numero');
-
-        $validator
-            ->scalar('complemento')
-            ->maxLength('complemento', 255)
-            ->allowEmptyString('complemento');
-
-        $validator
-            ->scalar('bairro')
-            ->maxLength('bairro', 255)
-            ->requirePresence('bairro', 'create')
-            ->notEmptyString('bairro');
-
-        $validator
-            ->scalar('cidade')
-            ->maxLength('cidade', 255)
-            ->requirePresence('cidade', 'create')
-            ->notEmptyString('cidade');
-
-        $validator
-            ->scalar('estado')
-            ->maxLength('estado', 255)
-            ->requirePresence('estado', 'create')
-            ->notEmptyString('estado');
 
         return $validator;
     }

@@ -154,7 +154,7 @@
                         <span>Oi</span>
                     </div>
                     <ul class="navbar-nav flex-column">
-                        <?= $this->element('menus\admin') ?>
+                        <?= $this->element('menus/admin') ?>
                     </ul>
 
                 </div>
@@ -190,6 +190,7 @@
     <?= $this->Html->script('/js/init.js'); ?>
     <?= $this->Html->script('/js/dashboard-data.js'); ?>
     <?= $this->Html->script('/js/panel/utills.js'); ?>
+    <?= $this->Html->script('/js/panel/validacoes.js'); ?>
     <?= $this->fetch('script'); ?>
 
 </body>

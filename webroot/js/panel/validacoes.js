@@ -9,8 +9,7 @@ validacoes.email = function(email, element) {
         dataType: 'JSON',
         method: 'POST',
         success: function(res) {
-            $(element).removeClass('error')
-            $(element).parent().children('.message-error').remove()
+
             if (res.code == 203 || res.code == 204) {
                 $(element).val('')
                 $(element).addClass('error')
@@ -20,16 +19,56 @@ validacoes.email = function(email, element) {
     })
 }
 
+validacoes.CNPJ = function(cnpj, empresa, element) {
+
+    $.ajax({
+        url: router.url + router.prefix.toLowerCase() + '/utills/valida-cnpj-empresa',
+        data: {
+            cnpj: cnpj,
+        },
+        dataType: 'JSON',
+        method: 'POST',
+        success: function(res) {
+
+            if (res.code == 203 || res.code == 204) {
+                $(element).val('')
+                $(element).addClass('error')
+                $(element).after('<span class="message-error">' + res.message + '</span>')
+            }
+        }
+    })
+
+}
+
+validacoes.email_inicial = ''
+validacoes.cnpj_inicial = ''
 
 $(document).ready(function() {
 
-    email_inicial = $('.verifica-email').val()
+    validacoes.email_inicial = $('.verifica-email').val()
+    validacoes.cnpj_inicial = $('.verifica-cnpj').val()
 
     $('.verifica-email').change(function() {
-        email = $(this).val()
+        let email = $(this).val()
 
-        if (email != '' && email != email_inicial) {
+        $(this).removeClass('error')
+        $(this).parent().children('.message-error').remove()
+
+        if (email != '' && email != validacoes.email_inicial) {
             validacoes.email(email, $(this))
+        }
+    })
+
+    $('.verifica-cnpj').change(function() {
+        let cnpj = $(this).val()
+        let empresa = $('#empresa-id').val();
+        console.log(empresa)
+
+        $(this).removeClass('error')
+        $(this).parent().children('.message-error').remove()
+
+        if (cnpj != '' && cnpj != validacoes.cnpj_inicial) {
+            validacoes.CNPJ(cnpj, empresa, $(this))
         }
     })
 

@@ -23,4 +23,17 @@ class UtillsComponent extends Component
 
         return $usuario;
     }
+
+    public function buscaEmpresaCNPJ($dados)
+    {
+        $empresaTable = \Cake\ORM\TableRegistry::getTableLocator()->get('EmpresaCNPJ');
+
+        $empresa = $empresaTable->find()
+            ->where([
+                'cnpj' => $dados['cnpj'],
+                'status' => $empresaTable->statusAtivo
+            ])->first();
+
+        return $empresa;
+    }
 }

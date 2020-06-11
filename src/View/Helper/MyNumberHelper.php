@@ -68,9 +68,33 @@ class MyNumberHelper extends NumberHelper {
 
      public function mask($val, $mask)
     {
-
         $maskared = '';
         $k = 0; 
+        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+
+            if ($mask[$i] == '#') {
+                if (isset($val[$k]))
+                    $maskared .= $val[$k++];
+            } else {
+                if (isset($mask[$i]))
+                    $maskared .= $mask[$i];
+            }
+        }
+        
+        echo $maskared;
+    }
+
+    public function documento($val, $mask = '')
+    {
+        $maskared = '';
+        $k = 0; 
+
+        if(strlen($val) == 11){
+            $mask = "###.###.###-##";
+        }elseif(strlen($val) == 14){
+            $mask = "##.###.###/####-##";
+        }
+
         for ($i = 0; $i <= strlen($mask) - 1; $i++) {
 
             if ($mask[$i] == '#') {

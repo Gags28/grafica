@@ -1,11 +1,11 @@
-usuario = {}
+const usuario = {}
 
 usuario.editCall = function() {
     $('.edit-user').click(function() {
         id = $(this).attr('user-id')
         $('#modal-edit').modal('show')
         usuario.resetForm()
-        user = usuario.getUser(id)
+        usuario.getUser(id)
     })
 
     $('.add-user').click(function() {
@@ -33,6 +33,8 @@ usuario.getUser = function(id) {
                 $('#tipo').val(data.tipo)
                 $('#empresa-cnpj-id').val(data.empresa_cnpj.id);
                 $('#empresa-cnpj-id').trigger('change');
+
+                validacoes.email_inicial = data.email
 
                 if (data.status == 1) {
                     $('.status').removeClass('btn-outline-success')

@@ -20,6 +20,7 @@ use Cake\ORM\Entity;
  * @property string|null $estado
  *
  * @property \App\Model\Entity\Empresa $empresa
+ * @property \App\Model\Entity\Usuario[] $usuarios
  */
 class EmpresaCnpj extends Entity
 {
@@ -43,5 +44,6 @@ class EmpresaCnpj extends Entity
         'cidade' => true,
         'estado' => true,
         'empresa' => true,
+        'usuarios' => true,
     ];
 }

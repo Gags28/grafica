@@ -10,10 +10,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $nome
+ * @property string|null $nome_resposavel
+ * @property string|null $email_responsavel
+ * @property string|null $telefone_responsavel
+ * @property int|null $status
  *
  * @property \App\Model\Entity\EmpresaCnpj[] $empresa_cnpj
  * @property \App\Model\Entity\Funcinario[] $funcinario
- * @property \App\Model\Entity\Usuario[] $usuarios
  */
 class Empresa extends Entity
 {
@@ -28,8 +31,11 @@ class Empresa extends Entity
      */
     protected $_accessible = [
         'nome' => true,
+        'nome_resposavel' => true,
+        'email_responsavel' => true,
+        'telefone_responsavel' => true,
+        'status' => true,
         'empresa_cnpj' => true,
         'funcinario' => true,
-        'usuarios' => true,
     ];
 }

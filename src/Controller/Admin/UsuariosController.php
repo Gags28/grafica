@@ -97,9 +97,9 @@ class UsuariosController extends AppAdminController
 
         if (!empty($user)) {
             if ($this->Usuarios->save($user)) {
-                $this->Flash->success('Usuário inativado');
+                $this->Flash->success('Usuário atualizada');
             } else {
-                $this->Flash->error('Usuário não inativado');
+                $this->Flash->error('Usuário não atualizado');
             }
         } else {
             $this->Flash->error('Usuário não encontrado');

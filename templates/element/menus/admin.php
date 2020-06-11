@@ -12,16 +12,15 @@
 
 <?php if ($this->request->getSession()->read('Auth.User.menu.empresas')) { ?>
     <li class="nav-item <?= (strpos(Router::url(), Router::url(['controller' => 'Empresas'])) === 0) ? 'active' : '...'; ?>">
-        <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'index']); ?>">
+        <a class="nav-link" href=<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'index']); ?>>
             <span class="feather-icon"><i data-feather="package"></i></span>
             <span class="nav-link-text">Empresas</span>
         </a>
     </li>
 <?php } ?>
 
-
 <?php if ($this->request->getSession()->read('Auth.User.menu.usuarios')) { ?>
-    <li class="nav-item <?= (strpos(Router::url(), Router::url(['controller' => 'Usuarios'])) === 0) ? 'active' : '...'; ?>">
+    <li class="nav-item <?= (strpos(Router::url(), Router::url(['controller' => 'Usuarios'])) === 0) ? '' : '...'; ?>">
         <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Usuarios', 'action' => 'index']); ?>">
             <span class="feather-icon"><i data-feather="user"></i></span>
             <span class="nav-link-text">Usuários</span>

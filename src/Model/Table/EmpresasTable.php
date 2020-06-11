@@ -30,6 +30,8 @@ use Cake\Validation\Validator;
  */
 class EmpresasTable extends Table
 {
+    public $statusAtivo = 1;
+    public $statusInativo = 9;
     /**
      * Initialize method
      *
@@ -69,6 +71,25 @@ class EmpresasTable extends Table
             ->maxLength('nome', 255)
             ->requirePresence('nome', 'create')
             ->notEmptyString('nome');
+
+        $validator
+            ->scalar('nome_resposavel')
+            ->maxLength('nome_resposavel', 255)
+            ->allowEmptyString('nome_resposavel');
+
+        $validator
+            ->scalar('email_responsavel')
+            ->maxLength('email_responsavel', 255)
+            ->allowEmptyString('email_responsavel');
+
+        $validator
+            ->scalar('telefone_responsavel')
+            ->maxLength('telefone_responsavel', 20)
+            ->allowEmptyString('telefone_responsavel');
+
+        $validator
+            ->integer('status')
+            ->allowEmptyString('status');
 
         return $validator;
     }

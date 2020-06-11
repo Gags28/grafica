@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * EmpresaCnpj Model
  *
  * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
+ * @property \App\Model\Table\UsuariosTable&\Cake\ORM\Association\HasMany $Usuarios
  *
  * @method \App\Model\Entity\EmpresaCnpj newEmptyEntity()
  * @method \App\Model\Entity\EmpresaCnpj newEntity(array $data, array $options = [])
@@ -29,11 +30,8 @@ use Cake\Validation\Validator;
  */
 class EmpresaCnpjTable extends Table
 {
-
     public $statusAtivo = 1;
-    public $statusInativo = 9;
-
-    /**
+    public $statusInativo = 9;    /**
      * Initialize method
      *
      * @param array $config The configuration for the Table.

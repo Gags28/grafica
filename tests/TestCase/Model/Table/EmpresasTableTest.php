@@ -28,7 +28,6 @@ class EmpresasTableTest extends TestCase
         'app.Empresas',
         'app.EmpresaCnpj',
         'app.Funcinario',
-        'app.Usuarios',
     ];
 
     /**

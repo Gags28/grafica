@@ -50,9 +50,9 @@
             </div>
         </div>
 
-
-        <?= $this->element('helpers/paginator') ?> 
     </section>
+
+    <?= $this->element('helpers/paginator') ?> 
 
 </div>
 

@@ -162,7 +162,7 @@ class UsuariosTable extends Table
                         'foto' => $query->foto,
                         'nome' => $query->nome,
                         'email' => $query->email,
-                        'empresa_id' => $query->empresa_id,
+                        'empresa_id' => $query->empresa_cnpj_id,
                         'limete_pedidos' => $query->limete_pedidos,
                         'tipo' => $query->tipo,
                         'status' => $query->status,
@@ -228,4 +228,5 @@ class UsuariosTable extends Table
 
         return $menu;
     }
+
 }

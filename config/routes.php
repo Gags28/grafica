@@ -77,3 +77,8 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Usuarios', 'action' => 'index']);
     $routes->fallbacks('DashedRoute');
 });
+
+Router::prefix('empresa', function (RouteBuilder $routes) {
+    $routes->connect('/', ['controller' => 'Pedidos', 'action' => 'index']);
+    $routes->fallbacks('DashedRoute');
+});

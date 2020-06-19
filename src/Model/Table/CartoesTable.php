@@ -69,8 +69,23 @@ class CartoesTable extends Table
         $validator
             ->scalar('css')
             ->maxLength('css', 4294967295)
-            ->requirePresence('css', 'create')
-            ->notEmptyString('css');
+            ->allowEmptyString('css');
+
+        $validator
+            ->scalar('image')
+            ->maxLength('image', 4294967295)
+            ->requirePresence('image', 'create')
+            ->notEmptyFile('image');
+
+        $validator
+            ->scalar('campos')
+            ->maxLength('campos', 255)
+            ->allowEmptyString('campos');
+
+        $validator
+            ->scalar('image_verso')
+            ->maxLength('image_verso', 255)
+            ->allowEmptyFile('image_verso');
 
         return $validator;
     }

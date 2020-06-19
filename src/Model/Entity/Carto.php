@@ -11,7 +11,10 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $nome
  * @property string $html
- * @property string $css
+ * @property string|null $css
+ * @property string $image
+ * @property string|null $campos
+ * @property string|null $image_verso
  */
 class Carto extends Entity
 {
@@ -28,5 +31,8 @@ class Carto extends Entity
         'nome' => true,
         'html' => true,
         'css' => true,
+        'image' => true,
+        'campos' => true,
+        'image_verso' => true,
     ];
 }

@@ -10,7 +10,10 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int|null $id_funcionario
- * @property int|null $id_campo
+ * @property string|null $nome
+ * @property string|null $valor
+ * @property int|null $id_cartao
+ * @property int|null $id_pedido
  */
 class CamposFuncionario extends Entity
 {
@@ -25,6 +28,9 @@ class CamposFuncionario extends Entity
      */
     protected $_accessible = [
         'id_funcionario' => true,
-        'id_campo' => true,
+        'nome' => true,
+        'valor' => true,
+        'id_cartao' => true,
+        'id_pedido' => true,
     ];
 }

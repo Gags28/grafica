@@ -108,9 +108,10 @@
 
 
 <?= $this->element('pages/empresas/modal_edit') ?>
-<?= $this->element('pages/empresas/modal_edit_unidade') ?>
 <?= $this->element('pages/empresas/modal_add') ?>
+
 <?= $this->element('pages/empresas/modal_add_unidade') ?>
+<?= $this->element('pages/empresas/modal_edit_unidade') ?>
 
 
 <?php echo $this->Html->script('/js/panel/empresas/empresa.js', ['block' => 'script']) ?>

@@ -3,6 +3,10 @@ html {
     height: 100%;
 }
 
+img {
+    width: 100%;
+}
+
 .pagination li {
     width: auto;
     height: 36px;
@@ -65,4 +69,37 @@ html {
 
 input.error {
     border-color: var(--danger);
+}
+
+.card-disclaimer {
+    box-sizing: border-box;
+    max-width: calc(25% - 15px);
+    height: 146px;
+    margin-right: 15px;
+    transition: 300ms;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.card-disclaimer img {
+    width: 100%;
+    transition: 300ms;
+}
+
+.card-disclaimer:hover {
+    cursor: pointer;
+    border: 5px solid var(--primary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.card-selected {
+    border: 5px solid var(--primary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+a[disabled="disabled"] {
+    pointer-events: none;
+    background-color: #d1d1d1;
+    border-color: #d1d1d1;
 }

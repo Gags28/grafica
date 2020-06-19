@@ -64,7 +64,17 @@ class LoginController extends AppController
             $this->Flash->error($login['message']);
         }else{
             $this->Auth->setUser($login['user']);
-            return $this->redirect(['controller' => 'Usuarios', 'action' => 'index', 'prefix' => 'Admin']);
+
+            switch($login['user']['tipo']){
+                case $this->Usuarios->tipoAdmin:                    
+                    return $this->redirect(['controller' => 'Usuarios', 'action' => 'index', 'prefix' => 'Admin']);
+                break;
+                case $this->Usuarios->tipoComprador:
+                    return $this->redirect(['controller' => 'Pedidos', 'action' => 'index', 'prefix' => 'Empresa']);
+                break;
+                case $this->Usuarios->tipoSolicitante:
+                break;
+            }
         }
 
     }

@@ -59,8 +59,22 @@ class CamposFuncionariosTable extends Table
             ->allowEmptyString('id_funcionario');
 
         $validator
-            ->integer('id_campo')
-            ->allowEmptyString('id_campo');
+            ->scalar('nome')
+            ->maxLength('nome', 255)
+            ->allowEmptyString('nome');
+
+        $validator
+            ->scalar('valor')
+            ->maxLength('valor', 255)
+            ->allowEmptyString('valor');
+
+        $validator
+            ->integer('id_cartao')
+            ->allowEmptyString('id_cartao');
+
+        $validator
+            ->integer('id_pedido')
+            ->allowEmptyString('id_pedido');
 
         return $validator;
     }

@@ -26,6 +26,7 @@ class FuncionariosTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Funcionarios',
+        'app.Empresas',
     ];
 
     /**
@@ -58,6 +59,26 @@ class FuncionariosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test addNovo method
+     *
+     * @return void
+     */
+    public function testAddNovo(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

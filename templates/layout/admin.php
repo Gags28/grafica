@@ -117,13 +117,11 @@
                         <div class="media">
                             <div class="media-img-wrap">
                                 <div class="avatar">
-                                    <?= $this->Html->image('avatar12.jpg', ['alt' => 'textalternatif', 'alt' => 'user', 'class' => 'avatar-img rounded-circle']) ?>
-
+                                    <?= $this->Html->image('logo5.jpg', ['alt' => 'textalternatif', 'alt' => 'user', 'class' => 'avatar-img rounded-circle']) ?>
                                 </div>
-                                <span class="badge badge-success badge-indicator"></span>
                             </div>
                             <div class="media-body">
-                                <span>Alessandro<i class="zmdi zmdi-chevron-down"></i></span>
+                                <span> <?php echo $this->request->getSession()->read('Auth.User.nome') ?> <i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </a>

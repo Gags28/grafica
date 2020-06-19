@@ -21,7 +21,7 @@ class AppAdminController extends AppController
         parent::beforeFilter($event);
         $user = $this->Auth->user();
 
-        if (!empty($user) && $user['status'] === $this->Usuarios->statusAtivo) {
+        if (!empty($user) && $user['status'] === $this->Usuarios->statusAtivo && $user['tipo'] == $this->Usuarios->tipoAdmin) {
             $this->Auth->allow();
         } else {
             $this->Auth->deny();

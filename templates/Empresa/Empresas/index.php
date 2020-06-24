@@ -1,16 +1,21 @@
+<nav class="hk-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-light bg-transparent">
+        <li class="breadcrumb-item"><a href="dashboard-admin.html">Empresas</a></li>
+    </ol>
+</nav>
+
 <!-- Container -->
 <div class="container mt-xl-50 mt-sm-30 mt-15">
     <!-- Title -->
     <div class="hk-pg-header mb-10">
         <div>
-            <h2 class="hk-pg-title font-weight-600">Empresas</h2>
+            <h2 class="hk-pg-title font-weight-600">Empresa</h2>
         </div>
     </div>
     <!-- /Title -->
 
     <div class="pa-0 justify-content-end pb-15 pt-10 text-right">
         <button class="btn btn-primary btn-wth-icon btn justify-content-end add-unidade">Adicionar Unidade</button>
-        <button class="btn btn-primary btn-wth-icon btn justify-content-end add-empresa">Nova Empresa</button>
     </div>
 
     <section class="hk-sec-wrapper pa-0 pa-md-20">
@@ -50,8 +55,6 @@
             </div>
         </div>
     </section>
-
-    <?= $this->element('helpers/paginator') ?>
 
 </div>
 
@@ -107,8 +110,7 @@
 </div>
 
 
-<?= $this->element('pages/empresas/modal_edit') ?>
-<?= $this->element('pages/empresas/modal_add') ?>
+<?= $this->element('pages/empresas/modal_edit_empresa') ?>
 
 <?= $this->element('pages/empresas/modal_add_unidade') ?>
 <?= $this->element('pages/empresas/modal_edit_unidade') ?>

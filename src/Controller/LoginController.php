@@ -76,7 +76,6 @@ class LoginController extends AppController
                 break;
             }
         }
-
     }
 
     public function logout(){

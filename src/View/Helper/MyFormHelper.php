@@ -11,7 +11,8 @@ use InvalidArgumentException;
 /**
  * MyForm helper
  */
-class MyFormHelper extends FormHelper {
+class MyFormHelper extends FormHelper
+{
 
     /**
      * Set on `Form::create()` to tell if the type of alignment used (i.e. horizontal).
@@ -134,16 +135,17 @@ class MyFormHelper extends FormHelper {
         // set HTML5 validation message to custom required/empty messages
         'autoSetCustomValidity' => true,
     ];
-        
 
-    public function control(string $fieldName, array $options = []): string {
+
+    public function control(string $fieldName, array $options = []): string
+    {
 
         $default = [
             'class' => 'form-control'
         ];
 
-        if(isset($options['class'])){
-            $options['class'] .= ' '.$default['class'];
+        if (isset($options['class'])) {
+            $options['class'] .= ' ' . $default['class'];
         }
 
         $controlMethod = $this->_controlMethod;
@@ -153,7 +155,8 @@ class MyFormHelper extends FormHelper {
         return $result;
     }
 
-    public function button(string $fieldName, array $options = []): string {
+    public function button(string $fieldName, array $options = []): string
+    {
 
         $default = [
             'class' => 'btn btn-primary btn-block',
@@ -175,6 +178,37 @@ class MyFormHelper extends FormHelper {
                 2 => 'Comprador',
                 3 => 'Solicitante',
             ]
+        ];
+        $options = \Cake\Utility\Hash::merge($default, $options);
+        return $this->control($fieldName, $options);
+    }
+
+    public function tipoUsuarioEmpresa($fieldName, array $options = [])
+    {
+        $default = [
+            'empty' => 'Selecione uma opção',
+            'options' => [
+                2 => 'Comprador',
+                3 => 'Solicitante',
+            ]
+        ];
+        $options = \Cake\Utility\Hash::merge($default, $options);
+        return $this->control($fieldName, $options);
+    }
+
+
+    public function quantidade($fieldName, array $options = [])
+    {
+
+
+        $default = [
+            'empty' => 'Selecione uma opção',
+            'options' => [
+                200 => '200',
+                500 => '500',
+                1000 => '1000'
+            ]
+
         ];
         $options = \Cake\Utility\Hash::merge($default, $options);
         return $this->control($fieldName, $options);

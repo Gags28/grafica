@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Usuarios Model
  *
+ * @property \App\Model\Table\EmpresaCnpjTable&\Cake\ORM\Association\BelongsTo $EmpresaCnpj
+ *
  * @method \App\Model\Entity\Usuario newEmptyEntity()
  * @method \App\Model\Entity\Usuario newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Usuario[] newEntities(array $data, array $options = [])
@@ -27,6 +29,7 @@ use Cake\Validation\Validator;
  */
 class UsuariosTable extends Table
 {
+
     public $statusAtivo = 1;
     public $statusInativo = 9;
 
@@ -50,7 +53,6 @@ class UsuariosTable extends Table
 
         $this->belongsTo('EmpresaCnpj', [
             'foreignKey' => 'empresa_cnpj_id',
-            'joinType' => 'INNER',
         ]);
     }
 
@@ -86,7 +88,8 @@ class UsuariosTable extends Table
         $validator
             ->scalar('senha')
             ->maxLength('senha', 255)
-            ->requirePresence('senha', 'create');
+            ->allowEmptyString('senha');
+
         $validator
             ->scalar('telefone')
             ->maxLength('telefone', 45)
@@ -125,6 +128,7 @@ class UsuariosTable extends Table
 
         return $rules;
     }
+
 
     
     public function beforeSave(\Cake\Event\Event $event, \Cake\Datasource\EntityInterface $entity, \ArrayObject $options)
@@ -167,7 +171,6 @@ class UsuariosTable extends Table
                         'tipo' => $query->tipo,
                         'status' => $query->status,
                         'menu' => $this->setMenu($query->tipo),
-                        'carrinho' => []
                     ];
                     $result['message'] = 'Usuário localizado';
                 }else{
@@ -211,7 +214,7 @@ class UsuariosTable extends Table
                     'pedidos' => true,
                     'usuarios' => true,
                     'produtos' => false,
-                    'empresas' => false,
+                    'empresas' => true,
                     'solicitar' => false,
                 ];
                 break;

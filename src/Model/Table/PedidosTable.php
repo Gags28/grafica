@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Pedidos Model
  *
+ * @property \App\Model\Table\PedidosItensTable&\Cake\ORM\Association\HasMany $PedidosItens
+ *
  * @method \App\Model\Entity\Pedido newEmptyEntity()
  * @method \App\Model\Entity\Pedido newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Pedido[] newEntities(array $data, array $options = [])
@@ -27,6 +29,10 @@ use Cake\Validation\Validator;
  */
 class PedidosTable extends Table
 {
+    public $statusAProduzir = 2;
+    public $statusProduzindo = 3;
+    public $stutusFinalizado = 4;
+    public $enderecoGrafica = 'Rua Paraná, 320, Ribeirão Preto - SP.';
     /**
      * Initialize method
      *
@@ -40,6 +46,15 @@ class PedidosTable extends Table
         $this->setTable('pedidos');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('PedidosItens', [
+            'foreignKey' => 'pedido_id',
+        ]);
+
+        $this->belongsTo('EmpresaCnpj', [
+            'foreignKey' => 'id_faturamento',
+        ]);
+
     }
 
     /**
@@ -60,19 +75,14 @@ class PedidosTable extends Table
             ->notEmptyString('id_usuario');
 
         $validator
-            ->integer('id_cartao')
-            ->requirePresence('id_cartao', 'create')
-            ->notEmptyString('id_cartao');
+            ->integer('id_faturamento')
+            ->requirePresence('id_faturamento', 'create')
+            ->notEmptyString('id_faturamento');
 
         $validator
-            ->integer('id_funcionario')
-            ->requirePresence('id_funcionario', 'create')
-            ->notEmptyString('id_funcionario');
-
-        $validator
-            ->integer('quantidade')
-            ->requirePresence('quantidade', 'create')
-            ->notEmptyString('quantidade');
+            ->integer('id_entrega')
+            ->requirePresence('id_entrega', 'create')
+            ->notEmptyString('id_entrega');
 
         $validator
             ->dateTime('data')

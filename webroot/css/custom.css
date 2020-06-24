@@ -58,7 +58,7 @@ img {
 .left-corner {
     position: absolute;
     left: 15px;
-    bottom: 13px;
+    bottom: 20px;
 }
 
 .message-error {
@@ -102,4 +102,8 @@ a[disabled="disabled"] {
     pointer-events: none;
     background-color: #d1d1d1;
     border-color: #d1d1d1;
+}
+
+a[href="#finish"] {
+    display: none !important;
 }

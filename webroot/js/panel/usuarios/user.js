@@ -46,7 +46,7 @@ usuario.getUser = function(id) {
                     $('.status').html('Ativar')
                 };
 
-                $('.status').attr('href', router.url + 'admin/usuarios/status/' + data.id)
+                $('.status').attr('href', router.url + router.prefix.toLowerCase() + '/usuarios/status/' + data.id)
             }
             if (res.code === 204) {
                 console.log('Usuário não encontrado')

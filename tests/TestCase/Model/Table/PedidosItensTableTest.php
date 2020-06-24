@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PedidosTable;
+use App\Model\Table\PedidosItensTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PedidosTable Test Case
+ * App\Model\Table\PedidosItensTable Test Case
  */
-class PedidosTableTest extends TestCase
+class PedidosItensTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PedidosTable
+     * @var \App\Model\Table\PedidosItensTable
      */
-    protected $Pedidos;
+    protected $PedidosItens;
 
     /**
      * Fixtures
@@ -25,8 +25,10 @@ class PedidosTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Pedidos',
         'app.PedidosItens',
+        'app.Funcionarios',
+        'app.Cartaos',
+        'app.Pedidos',
     ];
 
     /**
@@ -37,8 +39,8 @@ class PedidosTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Pedidos') ? [] : ['className' => PedidosTable::class];
-        $this->Pedidos = TableRegistry::getTableLocator()->get('Pedidos', $config);
+        $config = TableRegistry::getTableLocator()->exists('PedidosItens') ? [] : ['className' => PedidosItensTable::class];
+        $this->PedidosItens = TableRegistry::getTableLocator()->get('PedidosItens', $config);
     }
 
     /**
@@ -48,7 +50,7 @@ class PedidosTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Pedidos);
+        unset($this->PedidosItens);
 
         parent::tearDown();
     }
@@ -59,6 +61,16 @@ class PedidosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -1,0 +1,153 @@
+@font-face {
+    font-family: "Brandon_bld";
+    src: url("../../fonts/brandon/Brandon_bld.otf");
+}
+
+@font-face {
+    font-family: "Brandon_blk";
+    src: url("../../fonts/brandon/Brandon_blk.otf");
+}
+
+@font-face {
+    font-family: "Brandon_light";
+    src: url("../../fonts/brandon/Brandon_light.otf");
+}
+
+@font-face {
+    font-family: "Brandon_med";
+    src: url("../../fonts/brandon/Brandon_med.otf");
+}
+
+@font-face {
+    font-family: "Brandon_reg";
+    src: url("../../fonts/brandon/Brandon_reg.otf");
+}
+
+@font-face {
+    font-family: "Brandon_thin";
+    src: url("../../fonts/brandon/Brandon_thin.otf");
+}
+
+.card-container input {
+    font-family: 'Brandon_bld';
+    pointer-events: none;
+}
+
+.card-container {
+    width: 9.6cm;
+    height: 5.6cm;
+    border-radius: 0px;
+    position: relative;
+    background-color: #fff;
+}
+
+.card-container img {
+    width: 100%;
+}
+
+input {
+    position: absolute;
+    height: 1.2cm;
+    font-size: 20px;
+    width: 11cm;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    line-height: 1.5cm;
+}
+
+#nome-completo {
+    top: 2.12cm;
+    left: 1cm;
+    width: 7cm;
+    font-size: 16px;
+    height: 20px;
+    font-weight: 100;
+    color: #0040ff;
+    text-transform: uppercase;
+    font-family: 'Brandon_blk';
+}
+
+#email {
+    top: 4.15cm;
+    left: 1cm;
+    width: 3cm;
+    font-size: 8.6px;
+    height: 0.4cm;
+    font-family: "Brandon_med";
+}
+
+#endereco {
+    top: 3.8cm;
+    left: 4.7cm;
+    width: 4cm;
+    font-size: 9.2px;
+    height: 0.3cm;
+    font-family: 'Brandon_med';
+}
+
+#endereco-secundario {
+    top: 4.15cm;
+    left: 4.7cm;
+    width: 4cm;
+    font-size: 9.2px;
+    height: 0.3cm;
+    font-family: 'Brandon_med';
+}
+
+#telefone {
+    top: 3.6cm;
+    left: 1cm;
+    width: 2cm;
+    font-size: 8.6px;
+    height: 0.3cm;
+    font-family: "Brandon_blk";
+}
+
+#telefone-secundario {
+    top: 3.86cm;
+    left: 1cm;
+    width: 2cm;
+    font-size: 8.6px;
+    height: 0.3cm;
+    font-family: "Brandon_blk";
+}
+
+#cargo {
+    top: 2.76cm;
+    left: 1cm;
+    width: 5cm;
+    font-size: 12px;
+    height: 16px;
+    font-weight: 100 !important;
+    color: #f60;
+    font-family: 'Brandon_med';
+}
+
+#canvas {
+    width: 9.6cm;
+    height: 5.6cm;
+    background-color: #333;
+}
+
+#canvas2 {
+    width: 9.6cm;
+    height: 5.6cm;
+    background-color: #333;
+}
+
+.print {
+    background-color: transparent;
+    border: 1px solid #fff;
+    font-size: 20px;
+    padding: 10px 30px;
+    margin: 40px;
+    color: #fff;
+    transition: 300ms;
+}
+
+.print:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+}

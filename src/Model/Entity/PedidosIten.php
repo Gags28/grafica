@@ -6,18 +6,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Pedido Entity
+ * PedidosIten Entity
  *
  * @property int $id
- * @property int $id_usuario
- * @property int $id_faturamento
- * @property int $id_entrega
- * @property \Cake\I18n\FrozenTime $data
- * @property int $status
+ * @property int|null $cartao_id
+ * @property int|null $quantidade
+ * @property int|null $pedido_id
  *
- * @property \App\Model\Entity\PedidosIten[] $pedidos_itens
+ * @property \App\Model\Entity\Funcionario $funcionario
+ * @property \App\Model\Entity\Cartao $cartao
+ * @property \App\Model\Entity\Pedido $pedido
  */
-class Pedido extends Entity
+class PedidosIten extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,11 +29,11 @@ class Pedido extends Entity
      * @var array
      */
     protected $_accessible = [
-        'id_usuario' => true,
-        'id_faturamento' => true,
-        'id_entrega' => true,
-        'data' => true,
-        'status' => true,
-        'pedidos_itens' => true,
+        'cartao_id' => true,
+        'quantidade' => true,
+        'pedido_id' => true,
+        'funcionario' => true,
+        'cartao' => true,
+        'pedido' => true,
     ];
 }

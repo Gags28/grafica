@@ -93,6 +93,8 @@ class AppController extends Controller
             ],
             'storage' => 'Session'
         ]);
+
+        date_default_timezone_set('America/Sao_Paulo');
     }
 
     public function isAuthorized($user)

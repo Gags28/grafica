@@ -16279,7 +16279,7 @@ button.close {
 
 .hk-pg-wrapper {
     background: #f5f5f6;
-    padding: 30px 0 60px;
+    padding: 57px 0 60px;
     position: relative;
 }
 
@@ -17757,7 +17757,7 @@ Project:	Pangong
 /*Vertical Navigation*/
 
 .hk-wrapper.hk-vertical-nav .hk-pg-wrapper {
-    margin-left: 140px;
+    margin-left: 240px;
     left: 0;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
@@ -20240,7 +20240,8 @@ div.mce-menu .mce-menu-item-sep,
 
 .wizard>.actions {
     background: #fff;
-    padding: 10px 30px;
+    padding: 10px 10px;
+    margin: 8px;
 }
 
 .wizard>.actions a,

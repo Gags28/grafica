@@ -38,6 +38,26 @@ class MyNumberHelper extends NumberHelper {
         return $this->bHtml->badge($d[$fieldName]['text'], $d[$fieldName]['class']);
     }
 
+    public function pedidos($fieldName, array $options = []) {
+        $fieldName = strtoupper((string) $fieldName);
+        $d = [
+            2 => [
+                'text' => 'A Produzir',
+                'class' => 'warning',
+            ],
+            3 => [
+                'text' => 'Produzindo',
+                'class' => 'info',
+            ],
+            4 => [
+                'text' => 'Finalizado',
+                'class' => 'success',
+            ]
+        ];
+        return $this->bHtml->badge($d[$fieldName]['text'], $d[$fieldName]['class']);
+    }
+
+
     public function user($fieldName, array $options = []) {
         $fieldName = strtoupper((string) $fieldName);
         $d = [

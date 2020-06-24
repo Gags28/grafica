@@ -12,14 +12,14 @@ use Cake\ORM\Entity;
  * @property string|null $foto
  * @property string $nome
  * @property string $email
- * @property string $senha
+ * @property string|null $senha
  * @property string $telefone
  * @property int $limite_pedidos
- * @property int $empresa_cnpj_id
+ * @property int|null $empresa_cnpj_id
  * @property int $tipo
  * @property int $status
  *
- * @property \App\Model\Entity\Empresa $empresa
+ * @property \App\Model\Entity\EmpresaCnpj $empresa_cnpj
  */
 class Usuario extends Entity
 {
@@ -42,6 +42,6 @@ class Usuario extends Entity
         'empresa_cnpj_id' => true,
         'tipo' => true,
         'status' => true,
-        'empresa' => true,
+        'empresa_cnpj' => true,
     ];
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
     Common 
 */
 
@@ -139,14 +139,13 @@
 
 .wizard > .content
 {
-    background: #eee;
+    background: #fff;
     display: block;
     margin: 0.5em;
     min-height: 35em;
     overflow: hidden;
     position: relative;
     width: auto;
-
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -164,7 +163,7 @@
 {
     float: left;
     position: absolute;
-    width: 95%;
+    width: 100%;
     height: 95%;
     padding: 2.5%;
 }
@@ -222,7 +221,7 @@
     position: relative;
     display: block;
     text-align: right;
-    width: 100%;
+    width: auto;
 }
 
 .wizard.vertical > .actions

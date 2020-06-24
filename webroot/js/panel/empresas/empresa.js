@@ -95,7 +95,7 @@ empresa.getUnidade = function(id) {
                     $('.status').html('Ativar')
                 };
 
-                $('.status').attr('href', router.url + 'admin/empresas/status-unidade/' + data.id)
+                $('.status').attr('href', router.url + router.prefix.toLowerCase() + '/empresas/status-unidade/' + data.id)
             }
             if (res.code === 204) {
                 console.log('Usuário não encontrado')

@@ -14,8 +14,8 @@ class PedidosController extends AppAdminController
         parent::initialize();
         $this->loadModel('Pedidos');
         $this->loadModel('PedidosItens');
-        $this->loadModel('Funcionarios');
-        $this->loadModel('Usuarios');
+        $this->loadModel('CamposFuncionarios');
+        $this->loadModel('Cartoes');
     }
 
     public function index()
@@ -70,8 +70,18 @@ class PedidosController extends AppAdminController
         }
     }
 
-    public function cartao($id){
+    public function cartao($id, $pedido_id){
         $this->viewBuilder()->setLayout('card');
+
+        $cartao = $this->Cartoes->find()->where(['id' => $id])->first();
+
+
+        $produto = [];
+        $produto['campos'] = $this->CamposFuncionarios->find()
+        ->where(['id_pedido_item' => $pedido_id])->all();
+
+        $this->set(compact('cartao', 'produto'));
+        $this->set('title', 'Cartão');
 
     }
 }

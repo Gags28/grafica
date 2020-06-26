@@ -7,7 +7,7 @@ pedidos.init = function() {
 pedidos.show = function() {
     $('.pedido-show').click(function() {
         $('#detalhes-pedido').modal('show')
-        id = $('.pedido-show').attr('pedido-id')
+        id = $(this).attr('pedido-id')
         pedidos.getPedido(id)
     })
 }
@@ -25,7 +25,15 @@ pedidos.getPedido = function(id) {
             if (res.code === 200) {
 
                 a = res.data[0]
-                console.log(a)
+
+                $('#data-pedido').html('')
+                $('#empresa').html('')
+                $('#faturamento').html('')
+                $('#endereco').html('')
+                $('#usuario-pedido').html('')
+                $('#usuario-email').html('')
+                $('#cartoes').html('')
+
                 $('#data-pedido').html('Data:<span class="pl-10 text-dark"> ' + pedidos.formatarData(a.data) + ' </span>')
                 $('#empresa').html('Empresa:<span class="pl-10 text-dark">' + a.empresa_cnpj.empresa.nome + '</span>')
                 $('#faturamento').html('<span class="d-block">CNPJ: ' + pedidos.mask(a.empresa_cnpj.cnpj, '##.###.###/####-##') + ' </span> <span class="d-block"> ' + a.empresa_cnpj.empresa.email_responsavel + ' </span>  <span class="d-block"> ' + pedidos.formatPhone(a.empresa_cnpj.empresa.telefone_responsavel) + ' </span> ')
@@ -34,7 +42,7 @@ pedidos.getPedido = function(id) {
                 $('#usuario-email').html('Email: <span class="text-dark"> ' + a.usuario.email + '</span>')
 
                 a.item.map(function(val) {
-                    $('#cartoes').append('<tr> <td class="w-70"> ' + a.item[0].carto.nome + ' </td> <td class="text-right"> ' + a.item[0].quantidade + ' </td> <td class="text-right"> <a href=' + router.url + router.prefix.toLowerCase() + '/pedidos/cartao/' + a.id + ' target="_blank" > <div class="icon dripicons-download"> </div> <a> </td>  </tr>')
+                    $('#cartoes').append('<tr> <td class="w-70"> ' + val.carto.nome + ' </td> <td class="text-right"> ' + val.quantidade + ' </td> <td class="text-right"> <a href=' + router.url + router.prefix.toLowerCase() + '/pedidos/cartao/' + val.cartao_id + '/' + val.id + ' target="_blank" > <div class="icon dripicons-download"> </div> <a> </td>  </tr>')
                 })
 
             }

@@ -16,6 +16,7 @@ class PedidosController extends AppEmpresaController
         $this->loadModel('PedidosItens');
         $this->loadModel('Cartoes');
         $this->loadModel('Funcionarios');
+        $this->loadModel('CamposFuncionarios');
     }
 
 
@@ -24,26 +25,25 @@ class PedidosController extends AppEmpresaController
         $this->loadModel('EmpresaCnpj');
 
         $pedidos = $this->PedidosItens->find()
-        ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes'])
-        ->toArray();
+            ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes'])
+            ->toArray();
 
-        $paginate =$this->PedidosItens->find()
-        ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes']);
+        $paginate = $this->PedidosItens->find()
+            ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes']);
 
-        foreach($pedidos as $key => $pedido){
+        foreach ($pedidos as $key => $pedido) {
             $query = $this->EmpresaCnpj->find()
-            ->where([
-                'id' => $pedidos[$key]->pedido->id_entrega
-            ])->first();
+                ->where([
+                    'id' => $pedidos[$key]->pedido->id_entrega
+                ])->first();
 
-            if(empty($query)){
-                $pedidos[$key]->entrega = 'Retirar na Gráfica - '. $this->Pedidos->enderecoGrafica;
-            }else{
+            if (empty($query)) {
+                $pedidos[$key]->entrega = 'Retirar na Gráfica - ' . $this->Pedidos->enderecoGrafica;
+            } else {
                 $pedidos[$key]->entrega = $query->rua . ', ' . $query->numero . ', ' . $query->rua . ', ' . ((isset($query->complemento)) ? $query->complemento . ', ' : ' ') . $query->bairro . ', ' . $query->cidade . ' - ' . $query->estado;
-
             }
         }
-        
+
         $paginate = $this->paginate($paginate);
 
         $this->set(compact('pedidos', 'paginate'));
@@ -180,36 +180,37 @@ class PedidosController extends AppEmpresaController
         $produtos =  $this->request->getSession()->read('Carrinho.cartoes');
 
         $unidades = $this->EmpresaCnpj->find()->contain(['Empresas'])
-        ->where([
-            'empresa_id' => $user['empresa_id'],
-            'EmpresaCnpj.status' => $this->EmpresaCnpj->statusAtivo
-        ])
-        ->order(['EmpresaCnpj.id' => 'asc'])->all();
+            ->where([
+                'empresa_id' => $user['empresa_id'],
+                'EmpresaCnpj.status' => $this->EmpresaCnpj->statusAtivo
+            ])
+            ->order(['EmpresaCnpj.id' => 'asc'])->all();
 
         $enderecoGrafica = $this->Pedidos->enderecoGrafica;
 
         $this->set(compact('produtos', 'unidades', 'enderecoGrafica'));
     }
 
-    public function fecharCarrinho(){
+    public function fecharCarrinho()
+    {
 
-        if($this->request->is('post')){
+        if ($this->request->is('post')) {
 
             $user = $this->Auth->user();
             $data = $this->request->getData();
 
             $carrinho =  $this->request->getSession()->read('Carrinho.cartoes');
 
-            if(!isset($data['faturamento'])){
+            if (!isset($data['faturamento'])) {
                 $this->Flash->error('Selecione o faturamento antes de enviar o pedido');
                 return $this->redirect(['action' => 'carrinho']);
             }
 
-            if(!isset($data['entrega'])){
+            if (!isset($data['entrega'])) {
                 $this->Flash->error('Selecione a entrega antes de enviar o pedido');
                 return $this->redirect(['action' => 'carrinho']);
             }
-            
+
             $pedido = [];
             $pedido['id_usuario'] = $user['id'];
             $pedido['id_faturamento'] = $data['faturamento'];
@@ -221,19 +222,33 @@ class PedidosController extends AppEmpresaController
             $save = $this->Pedidos->newEmptyEntity();
             $save = $this->Pedidos->patchEntity($save, $pedido);
 
-            if($this->Pedidos->save($save)){
+            if ($this->Pedidos->save($save)) {
 
-                $pedido_itens = [];        
+                $pedido_itens = [];
                 $pedido_itens['pedido_id'] = $save->id;
-        
-                foreach($carrinho as $item){
+
+                foreach ($carrinho as $item) {
                     $pedido_itens['cartao_id'] = $item['id'];
                     $pedido_itens['quantidade']  = $item['quantidade'];
+                    $pedido_itens['campos']  = $item['campos'];
 
                     $save_item = $this->PedidosItens->newEmptyEntity();
                     $save_item = $this->PedidosItens->patchEntity($save_item, $pedido_itens);
 
                     $this->PedidosItens->save($save_item);
+
+                    foreach ($pedido_itens['campos'] as $key => $c) {
+                        $campo = [];
+                        $campo['nome'] = $c['nome'];
+                        $campo['valor'] = $c['valor'];
+                        $campo['id_cartao'] = $item['id'];
+                        $campo['id_pedido_item'] =  $save_item->id;
+
+                        $save_campo = $this->CamposFuncionarios->newEmptyEntity();
+                        $save_campo = $this->CamposFuncionarios->patchEntity($save_campo, $campo);
+    
+                        $this->CamposFuncionarios->save($save_campo);
+                    }
                 }
 
                 $this->request->getSession()->destroy();
@@ -241,12 +256,11 @@ class PedidosController extends AppEmpresaController
 
                 $this->Flash->success('Seu pedido foi enviado');
                 return $this->redirect(['action' => 'index']);
-            }else{
+            } else {
                 $this->Flash->error('Não foi possível salvar o pedido');
                 return $this->redirect(['action' => 'carrinho']);
             }
         }
-      
     }
 
     public function remover($id)

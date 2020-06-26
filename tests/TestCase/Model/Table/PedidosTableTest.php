@@ -27,6 +27,8 @@ class PedidosTableTest extends TestCase
     protected $fixtures = [
         'app.Pedidos',
         'app.PedidosItens',
+        'app.EmpresaCnpj',
+        'app.Usuarios',
     ];
 
     /**
@@ -59,6 +61,16 @@ class PedidosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test enderecoEntrega method
+     *
+     * @return void
+     */
+    public function testEnderecoEntrega(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

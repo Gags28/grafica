@@ -29,10 +29,14 @@ use Cake\Validation\Validator;
  */
 class PedidosTable extends Table
 {
+
+    public $statusAguardandoAprovacao = 1;
     public $statusAProduzir = 2;
     public $statusProduzindo = 3;
     public $stutusFinalizado = 4;
     public $enderecoGrafica = 'Rua Paraná, 320, Ribeirão Preto - SP.';
+
+
     /**
      * Initialize method
      *
@@ -53,6 +57,10 @@ class PedidosTable extends Table
 
         $this->belongsTo('EmpresaCnpj', [
             'foreignKey' => 'id_faturamento',
+        ]);
+
+        $this->belongsTo('Usuarios', [
+            'foreignKey' => 'id_usuario',
         ]);
 
     }
@@ -90,10 +98,35 @@ class PedidosTable extends Table
             ->notEmptyDateTime('data');
 
         $validator
+            ->integer('urgencia')
+            ->notEmptyString('urgencia');
+
+        $validator
             ->integer('status')
             ->requirePresence('status', 'create')
             ->notEmptyString('status');
 
         return $validator;
+    }
+
+    public function enderecoEntrega($pedidos){
+        
+        $EmpresaCnpjTable = \Cake\ORM\TableRegistry::getTableLocator()->get('EmpresaCnpj');
+
+        foreach($pedidos as $key => $pedido){
+            $query = $EmpresaCnpjTable->find()
+            ->where([
+                'id' => $pedidos[$key]->id_entrega
+            ])->first();
+
+            if(empty($query)){
+                $pedidos[$key]->entrega = 'Retirar na Gráfica - '. $this->enderecoGrafica;
+            }else{
+                $pedidos[$key]->entrega = $query->rua . ', ' . $query->numero . ', ' . $query->rua . ', ' . ((isset($query->complemento)) ? $query->complemento . ', ' : ' ') . $query->bairro . ', ' . $query->cidade . ' - ' . $query->estado;
+
+            }
+        }
+        
+        return $pedidos;
     }
 }

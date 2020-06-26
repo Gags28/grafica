@@ -13,9 +13,12 @@ use Cake\ORM\Entity;
  * @property int $id_faturamento
  * @property int $id_entrega
  * @property \Cake\I18n\FrozenTime $data
+ * @property int $urgencia
  * @property int $status
  *
  * @property \App\Model\Entity\PedidosIten[] $pedidos_itens
+ * @property \App\Model\Entity\EmpresaCnpj $empresa_cnpj
+ * @property \App\Model\Entity\Usuario $usuario
  */
 class Pedido extends Entity
 {
@@ -33,7 +36,10 @@ class Pedido extends Entity
         'id_faturamento' => true,
         'id_entrega' => true,
         'data' => true,
+        'urgencia' => true,
         'status' => true,
         'pedidos_itens' => true,
+        'empresa_cnpj' => true,
+        'usuario' => true,
     ];
 }

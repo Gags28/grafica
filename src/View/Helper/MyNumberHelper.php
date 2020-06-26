@@ -58,6 +58,22 @@ class MyNumberHelper extends NumberHelper {
     }
 
 
+    public function urgencia($fieldName, array $options = []) {
+        $fieldName = strtoupper((string) $fieldName);
+        $d = [
+            0 => [
+                'text' => 'Normal',
+                'class' => 'info',
+            ],
+            1 => [
+                'text' => 'Urgente',
+                'class' => 'danger',
+            ]
+        ];
+        return $this->bHtml->badge($d[$fieldName]['text'], $d[$fieldName]['class']);
+    }
+
+
     public function user($fieldName, array $options = []) {
         $fieldName = strtoupper((string) $fieldName);
         $d = [

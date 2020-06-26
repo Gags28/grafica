@@ -38,51 +38,51 @@
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><span class="feather-icon"><i data-feather="menu"></i></span></a>
             <a class="nav01,9
             0bar-brand" href="dashboard-admin.html">
-                <?= $this->Html->image('logo-light.png', ['alt' => 't
-                .,368021extalternatif', 'class' => 'brand-img d-inline-block']) ?>
+                <?= $this->Html->image('logo-light.png', ['alt' => 'logo', 'class' => 'brand-img d-inline-block']) ?>
             </a>
             <ul class="navbar-nav hk-navbar-content">
                 <!-- <li class="nav-item">
                     <a id="navbar_search_btn" class="nav-link nav-link-hover" href="javascript:void(0);"><span class="feather-icon"><i data-feather="search"></i></span></a>
                 </li> -->
-
-                <li class="nav-item dropdown dropdown-notifications">
-                    <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="feather-icon"><i data-feather="shopping-cart"></i></span>
-                        <?php if (isset($cartoes)) { ?>
-                            <span class="badge-wrap"><span class="badge badge-primary badge-indicator badge-indicator-sm badge-pill pulse"></span></span>
-                        <?php } ?>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                        <h6 class="dropdown-header">Carrinho <?= $this->Html->link('Ver Todas',['controller'=>'pedidos', 'action'=>'carrinho']) ?></h6>
-                        <div class="notifications-nicescroll-bar">
-
+                <?php if ($this->request->getSession()->read('Auth.User.tipo') !== 1) { ?>
+                    <li class="nav-item dropdown dropdown-notifications">
+                        <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="feather-icon"><i data-feather="shopping-cart"></i></span>
                             <?php if (isset($cartoes)) { ?>
-                                <?php foreach ($cartoes as $card) { ?>
-
-                                    <div class="dropdown-divider"></div>
-
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <div class="media">
-                                            <div class="media-img-wrap">
-                                                <div class="avatar avatar-sm">
-                                                    <?= $this->Html->image('avatar2.jpg', ['alt' => 'textalternatif', 'class' => 'avatar-img rounded-circle']) ?>
-                                                </div>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <div class="notifications-text"> Cartão para <?= $card['campos'][0]['valor'] ?> <br> <span class="text-dark text-capitalize"> <?= $card['quantidade'] ?> unidades </span> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-                                <?php } ?>
+                                <span class="badge-wrap"><span class="badge badge-primary badge-indicator badge-indicator-sm badge-pill pulse"></span></span>
                             <?php } ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            <h6 class="dropdown-header">Carrinho <?= $this->Html->link('Ver Todas', ['controller' => 'pedidos', 'action' => 'carrinho']) ?></h6>
+                            <div class="notifications-nicescroll-bar">
 
+                                <?php if (isset($cartoes)) { ?>
+                                    <?php foreach ($cartoes as $card) { ?>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a href="javascript:void(0);" class="dropdown-item">
+                                            <div class="media">
+                                                <div class="media-img-wrap">
+                                                    <div class="avatar avatar-sm">
+                                                        <?= $this->Html->image('avatar2.jpg', ['alt' => 'textalternatif', 'class' => 'avatar-img rounded-circle']) ?>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div>
+                                                        <div class="notifications-text"> Cartão para <?= $card['campos'][0]['valor'] ?> <br> <span class="text-dark text-capitalize"> <?= $card['quantidade'] ?> unidades </span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+                                    <?php } ?>
+                                <?php } ?>
+
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                <?php } ?>
                 <li class="nav-item dropdown dropdown-authentication">
                     <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media">
@@ -97,8 +97,8 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                        <a class="dropdown-item" href="profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Meus Dados</span></a>
-                        <div class="dropdown-divider"></div>
+                        <!-- <a class="dropdown-item" href="profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Meus Dados</span></a> -->
+                        <!-- <div class="dropdown-divider"></div> -->
                         <?= $this->Html->link('<i class="dropdown-icon zmdi zmdi-power"></i><span>Sair</span>', ['controller' => 'Login', 'action' => 'logout', 'prefix' => false], ['escape' => false, 'class' => 'dropdown-item']) ?>
                     </div>
                 </li>

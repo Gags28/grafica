@@ -3168,7 +3168,7 @@ dt {
 }
 
 .mb-10 {
-    margin-bottom: 10px !important;
+    margin-bottom: 0px !important;
 }
 
 .mb-15 {
@@ -3176,7 +3176,7 @@ dt {
 }
 
 .mb-20 {
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
 }
 
 .mb-25 {

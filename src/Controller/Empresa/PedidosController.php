@@ -52,7 +52,6 @@ class PedidosController extends AppEmpresaController
 
     public function add()
     {
-
         $cartao = $this->Cartoes->find()->all();
         $this->set(compact('cartao'));
     }
@@ -198,6 +197,7 @@ class PedidosController extends AppEmpresaController
 
             $user = $this->Auth->user();
             $data = $this->request->getData();
+
             $carrinho =  $this->request->getSession()->read('Carrinho.cartoes');
 
             if(!isset($data['faturamento'])){
@@ -214,6 +214,7 @@ class PedidosController extends AppEmpresaController
             $pedido['id_usuario'] = $user['id'];
             $pedido['id_faturamento'] = $data['faturamento'];
             $pedido['id_entrega'] = $data['entrega'];
+            $pedido['urgencia'] = $data['urgencia'];
             $pedido['data'] = date('Y-m-d H:i:s');
             $pedido['status'] = $this->Pedidos->statusAProduzir;
 

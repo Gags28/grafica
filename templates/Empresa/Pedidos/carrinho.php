@@ -87,11 +87,8 @@
 
                         <div class="col-lg-6 col-12 mb-40">
 
-                            Prioridade de impressão:
-                            <select class="form-control custom-select  mt-0">
-                                <option selected="">Normal</option>
-                                <option value="1">Urgente</option>
-                            </select>
+                            
+                            <?= $this->Form->control('urgencia', ['label' => 'Prioridade de impressão:', 'type' => 'select', 'class' => 'custom-select  mt-0', 'options' => [ 0 => 'Normal', 1 => 'Urgente']]) ?>
                         </div>
                     </div>
                 </section>
@@ -112,8 +109,8 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="faturamento" id="faturamento<?= $f->id ?>" value="<?= $f->id ?>" checked>
                                 <label class="form-check-label" for="faturamento<?= $f->id ?>">
-                                   CNPJ: <?= $this->Number->documento($f->cnpj) ?><br>
-                                   Empresa: <?= $f->empresa->nome ?>
+                                    CNPJ: <?= $this->Number->documento($f->cnpj) ?><br>
+                                    Empresa: <?= $f->empresa->nome ?>
                             </div>
 
                         <?php } ?>

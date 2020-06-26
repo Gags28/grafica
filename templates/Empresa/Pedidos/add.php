@@ -29,7 +29,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" role="tabpanel">
-                <h6 class="mt-30 mb-20">Coorporativo</h6>
+
                 <div class="row hk-gallery pa-md-15">
 
                     <?php foreach ($cartao as $c) {

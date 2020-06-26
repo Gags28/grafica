@@ -22,6 +22,7 @@ class PedidosFixture extends TestFixture
         'id_faturamento' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'id_entrega' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'data' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+        'urgencia' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'status' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'id_usuario_idx' => ['type' => 'index', 'columns' => ['id_usuario'], 'length' => []],
@@ -52,7 +53,8 @@ class PedidosFixture extends TestFixture
                 'id_usuario' => 1,
                 'id_faturamento' => 1,
                 'id_entrega' => 1,
-                'data' => '2020-06-24 08:20:15',
+                'data' => '2020-06-25 23:25:40',
+                'urgencia' => 1,
                 'status' => 1,
             ],
         ];

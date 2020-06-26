@@ -10,6 +10,27 @@ pedidos.show = function() {
         id = $(this).attr('pedido-id')
         pedidos.getPedido(id)
     })
+
+    $('#status').change(function() {
+        status = $(this).val()
+        id = $(this).attr('pedido-id')
+        pedidos.atualizaPedido(id, status)
+    })
+}
+
+pedidos.atualizaPedido = function(id, status) {
+    $.ajax({
+        url: router.url + router.prefix.toLowerCase() + '/pedidos/atualiza',
+        data: {
+            id: id,
+            status: status
+        },
+        dataType: 'JSON',
+        method: 'POST',
+        success: function(res) {
+            window.location.reload()
+        }
+    })
 }
 
 pedidos.getPedido = function(id) {
@@ -34,6 +55,8 @@ pedidos.getPedido = function(id) {
                 $('#usuario-email').html('')
                 $('#cartoes').html('')
 
+                $('#status').val(a.status)
+                $('#status').attr('pedido-id', a.id)
                 $('#data-pedido').html('Data:<span class="pl-10 text-dark"> ' + pedidos.formatarData(a.data) + ' </span>')
                 $('#empresa').html('Empresa:<span class="pl-10 text-dark">' + a.empresa_cnpj.empresa.nome + '</span>')
                 $('#faturamento').html('<span class="d-block">CNPJ: ' + pedidos.mask(a.empresa_cnpj.cnpj, '##.###.###/####-##') + ' </span> <span class="d-block"> ' + a.empresa_cnpj.empresa.email_responsavel + ' </span>  <span class="d-block"> ' + pedidos.formatPhone(a.empresa_cnpj.empresa.telefone_responsavel) + ' </span> ')

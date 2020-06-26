@@ -27,11 +27,15 @@
                                       <div class="col-md-5 mb-20">
                                           <h4 class="mb-30 font-weight-600">Detalhes do pedido</h4>
                                           <span class="d-block">
-                                              <select class="form-control custom-select mt-0 mb-10">
-                                                  <option selected="">A Produzir</option>
-                                                  <option value="1">Produzindo</option>
-                                                  <option value="1">Finalizado</option>
-                                              </select></span>
+                                              <?= $this->Form->control(
+                                                    'status',
+                                                    ['options' => [
+                                                        2 => 'A Produzir',
+                                                        3 => 'Produzindo',
+                                                        4 => 'Finalizado'
+                                                    ], 'type' => 'select', 'empty' => 'Status do Pedido', 'class' => 'form-control custom-select mt-0 mb-10']
+                                                ) ?>
+                                          </span>
                                           <span class="d-block" id="data-pedido"> </span>
                                           <span class="d-block" id="empresa"> </span>
                                       </div>
@@ -68,7 +72,7 @@
                                                   </tr>
                                               </thead>
                                               <tbody id="cartoes">
-                                                
+
                                               </tbody>
                                           </table>
                                       </div>

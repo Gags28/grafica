@@ -56,32 +56,43 @@ class PedidosController extends AppAdminController
 
             $pedido = $this->Pedidos->enderecoEntrega($query);
 
-            foreach($pedido as $key => $p){
+            foreach ($pedido as $key => $p) {
 
                 $pedido[$key]['item'] = $this->PedidosItens->find()
-                ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes'])
-                ->where([
-                    'pedido_id' => $p->id
-                ])
-                ->toArray();
+                    ->contain(['Pedidos' => ['EmpresaCnpj'], 'Cartoes'])
+                    ->where([
+                        'pedido_id' => $p->id
+                    ])
+                    ->toArray();
             }
-           
+
             $this->sendResponse($pedido, 200);
         }
     }
 
-    public function cartao($id, $pedido_id){
+    public function atualiza()
+    {
+
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            $pedido = $this->Pedidos->get($data['id']);
+            $pedido->status = $data['status'];
+            $this->Pedidos->save($pedido);
+            $this->sendResponse(['data' => 'Atualizado'], 200);
+        }
+    }
+
+    public function cartao($id, $pedido_id)
+    {
         $this->viewBuilder()->setLayout('card');
 
         $cartao = $this->Cartoes->find()->where(['id' => $id])->first();
 
-
         $produto = [];
         $produto['campos'] = $this->CamposFuncionarios->find()
-        ->where(['id_pedido_item' => $pedido_id])->all();
+            ->where(['id_pedido_item' => $pedido_id])->all();
 
         $this->set(compact('cartao', 'produto'));
         $this->set('title', 'Cartão');
-
     }
 }
